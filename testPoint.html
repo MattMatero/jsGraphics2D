@@ -1,0 +1,58 @@
+<html>
+<body>
+<canvas id="theCanvas" width="480" height="360"></canvas>
+<script src = "Vector.js"></script>
+<script src = "Matrix.js"></script>
+<script src = "Point.js"></script>
+<script src = "Triangle.js"></script>
+<script>
+var rotate = new Matrix().rotationMatrix(1);
+
+
+var vec1 = new Vector();
+vec1 = vec1.make3D(3,3);
+console.log(vec1.toString());
+var vec2 = new Vector();
+vec2 = vec2.make3D(40,55);
+console.log(vec2.toString());
+var vec3 = new Vector();
+vec3 = vec3.make3D(55,40);
+console.log(vec3.toString());
+
+
+var arr = [new Point(), new Point(), new Point()];
+arr[0].setPosV(vec1);
+arr[1].setPosV(vec2);
+arr[2].setPosV(vec3);
+
+
+
+var t = new Triangle();
+t.setPoints(arr[0],arr[1],arr[2]);
+var display = document.getElementById("theCanvas");
+var context = display.getContext('2d');
+
+
+loop();
+
+function loop()
+{
+	render();
+	//console.log(t.toString());
+	setTimeout(loop, 17); // 60 FPS
+}
+
+
+function render(){
+	context.fillStyle = "#ddddff";
+	context.fillRect(0,0,480,360);
+	
+	context.fillStyle = "#00FF00";
+	context.fillRect(50,50,240,180);
+	
+	t.rotateAroundPt(10,200,200);
+	t.draw(context);
+}
+</script>
+</body>
+</html>

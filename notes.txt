@@ -1,0 +1,39 @@
+rotate by theta counter clockwise:
+
+cos (theta), -sin (theta)
+sin (theta), cos(theta)
+
+scale by C:
+
+C 0
+0 C
+
+Translation
+
+x ---> x
+y ---> y
+	   1
+
+1 0 a
+0 1 b
+0 0 1
+
+
+Rotation in 3d:
+cos (theta), -sin (theta), 0
+sin (theta), cos(theta), 0
+0,			0,			1
+
+
+Assignment: 
+Matrix*Vector function
+2D rotation (theta) -> matrix 3x3
+2D translation( a,b ) -> matrix 3x3
+2D Vector(x,y) -> Vector 3x3
+
+Test Cases
+V = 2DVector(2,3) -> [2,3,1]
+example: translate(-1,1), rotate(90), rotate(-30), rotate(-60), translate(1,-1)
+m5.mult(m4.mult(m3.mult(m2.mult(m1.mult(V)))));
+
+
