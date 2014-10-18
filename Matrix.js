@@ -1,3 +1,6 @@
+/*
+Matrix function to represent a 3x3 matrix. A simple two-dimensional array structure is used
+*/
 Matrix = function(){
 	this.arr = new Array(3);
 	this.arr[0] = new Array(0,0,0);
@@ -5,7 +8,21 @@ Matrix = function(){
 	this.arr[2] = new Array(0,0,0);
 }
 
+/*
+buildMatrix: Creates a matrix using a 1D array
+*/
+Matrix.prototype.buildMatrix = function(matarr){
+	for(i = 0; i< 3; i++){
+		for(j = 0; j < 3; j++){
+				this.arr[i][j] = matarr[j+(3*i)];
+		}
+	}
+	return this;
+}
 
+/*
+buildMatrixNums: takes in 9 single integers and creates a 2D array, representing the matrix.
+*/
 Matrix.prototype.buildMatrixNums = function(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9){
 	this.arr[0][0] = arg1;
 	this.arr[0][1] = arg2;
@@ -20,22 +37,10 @@ Matrix.prototype.buildMatrixNums = function(arg1,arg2,arg3,arg4,arg5,arg6,arg7,a
 	this.arr[2][2] = arg9;
 }
 
-Matrix.prototype.buildMatrix = function(matarr){
-	this.arr[0][0] = matarr[0];
-	this.arr[0][1] = matarr[1];
-	this.arr[0][2] = matarr[2];
-	
-	this.arr[1][0] = matarr[3];
-	this.arr[1][1] = matarr[4];
-	this.arr[1][2] = matarr[5];
-	
-	this.arr[2][0] = matarr[6];
-	this.arr[2][1] = matarr[7];
-	this.arr[2][2] = matarr[8];
-	
-	return this;
-}
 
+/*
+addSelf: Takes in a Matrix and adds it to the calling Matrix
+*/
 Matrix.prototype.addSelf = function( matrix ) {
 	for(i = 0; i < 3; i++){
 		for(j = 0; j < 3; j++){
@@ -46,6 +51,10 @@ Matrix.prototype.addSelf = function( matrix ) {
 	return this;
 }
 
+/*
+mult: Takes in a matrix and multiplies it to the calling Matrix, the result is stored in a new Matrix
+return: the product of the two matrices
+*/
 Matrix.prototype.mult = function( matrix ){
 	var result = new Array(3);
 	result[0] = [0,0,0];
@@ -66,23 +75,31 @@ Matrix.prototype.mult = function( matrix ){
 	return newMat.buildMatrix(flatMatrix);
 }
 
+/*
+clone: Takes in a matrix and creates a copy of it
+return: the copy of the matrix
+*/
 Matrix.prototype.clone = function (matrix){
 	var flat = [matrix.arr[0][0],matrix.arr[0][1],matrix.arr[0][2],matrix.arr[1][0],matrix.arr[1][1],matrix.arr[1][2],matrix.arr[2][0],matrix.arr[2][1],matrix.arr[2][2]];
 	return new Matrix().buildMatrix(flat);
 }
 
+/*
+translate: Takes in two integers, a and b. These represent the values we are translating by
+return: the translation matrix for those values
+*/
 Matrix.prototype.translate = function(a,b){
 var transMat = new Array(3);
 transMat[0] = [1,0,a];
 transMat[1] = [0,1,b];
 transMat[2] = [0,0,1];
 
-var flat = [transMat[0][0],transMat[0][1],transMat[0][2], transMat[1][0], transMat[1][1], transMat[1][2], transMat[2][0], transMat[2][1], transMat[2][2]];
+	var flat = [transMat[0][0],transMat[0][1],transMat[0][2], transMat[1][0], transMat[1][1], transMat[1][2], transMat[2][0], transMat[2][1], transMat[2][2]];
 	var newMat = new Matrix();
 	return newMat.buildMatrix(flat);
 }
 
-
+//simple string representation of a matrix
 Matrix.prototype.toString = function(){
 	var myMat = "";
 	for(i = 0; i < 3; i++){
@@ -94,6 +111,10 @@ Matrix.prototype.toString = function(){
 	return myMat;
 }
 
+/*
+rotationMatrix: Takes in an integer theta, representing the angle we are rotating by
+return: the rotation matrix for that angle
+*/
 Matrix.prototype.rotationMatrix = function(theta){
 var rotateMatrix = new Array(3);
 theta = (theta*Math.PI)/180

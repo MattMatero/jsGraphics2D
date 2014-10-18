@@ -24,13 +24,13 @@ var arr2 = [2,3,4,5,6,7,8,9,10];
 //example: translate(-1,1), rotate(90), rotate(-30), rotate(-60), translate(1,-1)
 //m5.mult(m4.mult(m3.mult(m2.mult(m1.mult(V)))));
 mat1.buildMatrix(arr); //original matrix
+console.log(mat1.toString());
 
 var mat4 = new Matrix().translate(1,-1); //translate 1,-1
 var mat3 = new Matrix().rotationMatrix(-60); //rotate by -60 degrees
 var mat5 = new Matrix().rotationMatrix(-30); //rotate by -30 degrees
 var mat6 = new Matrix().rotationMatrix(90); //rortate by 90 degrees
 var mat7 = new Matrix().translate(-1,1); //translate by -1,1
-//console.log("trans", mat4.toString(),"-60" ,mat3.toString(), "-30",mat5.toString(), "90",mat6.toString(), "trans" ,mat7.toString());
 
 
 console.log("Test Case");

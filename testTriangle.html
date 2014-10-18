@@ -7,12 +7,17 @@
 <script src = "Triangle.js"></script>
 <script>
 var rotate = new Matrix().rotationMatrix(1);
-
+console.log(rotate.toString());
 
 var vec1 = new Vector(3,3);
+var vec2 = new Vector(40,55);
+var vec3 = new Vector(55,40);
 
-var p = new Point(vec1);
+var arr = [new Point(vec1), new Point(vec2), new Point(vec3)];
 
+var t = new Triangle();
+
+t.setPoints(arr[0],arr[1],arr[2]);
 
 var display = document.getElementById("theCanvas");
 var context = display.getContext('2d');
@@ -23,7 +28,6 @@ loop();
 function loop()
 {
 	render();
-	//console.log(t.toString());
 	setTimeout(loop, 17); // 60 FPS
 }
 
@@ -34,9 +38,8 @@ function render(){
 	
 	context.fillStyle = "#00FF00";
 	context.fillRect(50,50,240,180);
-	
-	p.rotateAroundPt(5,200,75);
-	p.draw(context);
+	t.rotateAroundPt(1,200,200);
+	t.draw(context);
 }
 </script>
 </body>
